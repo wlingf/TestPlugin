@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/load_plugin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="加载插件"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        app:layout_constraintTop_toBottomOf="@id/load_plugin"
+        android:id="@+id/jump_plugin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="跳转插件页面"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        app:layout_constraintTop_toBottomOf="@id/jump_plugin"
+        android:id="@+id/jump_plugin_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="跳转插件页面并携带参数"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        app:layout_constraintTop_toBottomOf="@id/jump_plugin_data"
+        android:id="@+id/share_local_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="宿主与插件共享本地缓存数据"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        app:layout_constraintTop_toBottomOf="@id/share_local_data"
+        android:id="@+id/get_plugin_local_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="获取插件本地缓存数据"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        app:layout_constraintTop_toBottomOf="@id/get_plugin_local_data"
+        android:id="@+id/jump_other_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="跳转插件指定页面"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/jump_other_activity"
+        android:id="@+id/down_load_plugin_apk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="下载插件 apk"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/down_load_plugin_apk"
+        android:id="@+id/down_load_plugin_apk2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="下载插件2 apk"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
