@@ -13,7 +13,7 @@ import java.lang.reflect.Type
  * @Description:
  */
 @Parser(name = "Response")
-open class ResponseParser<T : BaseEntity>: TypeParser<T> {
+open class ResponseParser<T>: TypeParser<T> {
 
     //以下两个构造方法是必须的
     protected constructor() : super()
