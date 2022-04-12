@@ -1,16 +1,18 @@
-package cc.jianke.mvvmmodule.mvvm
+package cc.jianke.mvvmmodule.mvvm.viewbinding
 
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import cc.jianke.mvvmmodule.mvvm.BaseViewModel
+import cc.jianke.mvvmmodule.viewbinding.BaseViewBindingActivity
 import java.lang.NullPointerException
 import java.lang.reflect.ParameterizedType
 
 /**
  * @Author: wlf
  * @CreateDate: 2022/4/6 10:05
- * @Description: MVVM框架Activity基类
+ * @Description: MVVM框架 ViewBinding Activity 基类
  */
-abstract class BaseMvvmActivity<VB: ViewBinding, VM: BaseViewModel>: BaseActivity<VB>() {
+abstract class BaseViewBindingMvvmActivity<VB: ViewBinding, VM: BaseViewModel>: BaseViewBindingActivity<VB>() {
 
     lateinit var mViewModel: VM
 

@@ -1,7 +1,7 @@
 package cc.jianke.testplugin
 
 import android.util.Log
-import cc.jianke.mvvmmodule.databinding.BaseDataBindingMvvmActivity
+import cc.jianke.mvvmmodule.mvvm.databinding.BaseDataBindingMvvmActivity
 import cc.jianke.testplugin.databinding.ActivityTestDatabindingBinding
 
 /**

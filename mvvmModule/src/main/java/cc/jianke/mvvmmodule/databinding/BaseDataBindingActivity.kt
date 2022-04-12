@@ -5,13 +5,14 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import cc.jianke.mvvmmodule.base.BaseActivity
 
 /**
  * @Author: wlf
  * @CreateDate: 2022/4/12 10:39
  * @Description: DataBinding Activity 基类
  */
-abstract class BaseDataBindingActivity<DB: ViewDataBinding>(@LayoutRes private val layoutId: Int): AppCompatActivity() {
+abstract class BaseDataBindingActivity<DB: ViewDataBinding>(@LayoutRes private val layoutId: Int): BaseActivity() {
 
     lateinit var mBindView: DB
 

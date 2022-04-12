@@ -1,16 +1,18 @@
-package cc.jianke.mvvmmodule.mvvm
+package cc.jianke.mvvmmodule.mvvm.databinding
 
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewbinding.ViewBinding
+import cc.jianke.mvvmmodule.databinding.BaseDataBindingFragment
+import cc.jianke.mvvmmodule.mvvm.BaseViewModel
 import java.lang.NullPointerException
 import java.lang.reflect.ParameterizedType
 
 /**
  * @Author: wlf
- * @CreateDate: 2022/4/6 11:18
- * @Description: MVVM框架Fragment基类
+ * @CreateDate: 2022/4/12 11:40
+ * @Description: MVVM框架 DataBinding Fragment 基类
  */
-abstract class BaseMvvmFragment<VB: ViewBinding, VM: BaseViewModel>: BaseFragment<VB>() {
+abstract class BaseDataBindingMvvmFragment<DB: ViewDataBinding, VM: BaseViewModel>(layoutId: Int): BaseDataBindingFragment<DB>(layoutId) {
 
     lateinit var mViewModel: VM
 

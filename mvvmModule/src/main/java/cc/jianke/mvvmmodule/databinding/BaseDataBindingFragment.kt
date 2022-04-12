@@ -8,13 +8,14 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import cc.jianke.mvvmmodule.base.BaseFragment
 
 /**
  * @Author: wlf
  * @CreateDate: 2022/4/12 11:37
  * @Description: DataBinding Fragment 基类
  */
-abstract class BaseDataBindingFragment<DB: ViewDataBinding>(@LayoutRes private val layoutId: Int): Fragment() {
+abstract class BaseDataBindingFragment<DB: ViewDataBinding>(@LayoutRes private val layoutId: Int): BaseFragment() {
 
     lateinit var mBindView: DB
 

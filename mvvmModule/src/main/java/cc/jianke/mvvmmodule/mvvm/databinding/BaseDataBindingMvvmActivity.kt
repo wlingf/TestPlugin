@@ -1,7 +1,8 @@
-package cc.jianke.mvvmmodule.databinding
+package cc.jianke.mvvmmodule.mvvm.databinding
 
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
+import cc.jianke.mvvmmodule.databinding.BaseDataBindingActivity
 import cc.jianke.mvvmmodule.mvvm.BaseViewModel
 import java.lang.NullPointerException
 import java.lang.reflect.ParameterizedType

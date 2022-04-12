@@ -1,6 +1,6 @@
 package cc.jianke.testplugin.fragment
 
-import cc.jianke.mvvmmodule.mvvm.BaseMvvmFragment
+import cc.jianke.mvvmmodule.mvvm.viewbinding.BaseViewBindingMvvmFragment
 import cc.jianke.testplugin.SecondModel
 import cc.jianke.testplugin.databinding.FragmentTestBinding
 
@@ -9,7 +9,7 @@ import cc.jianke.testplugin.databinding.FragmentTestBinding
  * @CreateDate: 2022/4/6 11:34
  * @Description:
  */
-class TestFragment: BaseMvvmFragment<FragmentTestBinding, SecondModel>() {
+class TestFragmentViewBinding: BaseViewBindingMvvmFragment<FragmentTestBinding, SecondModel>() {
 
     override fun initView() {
     }

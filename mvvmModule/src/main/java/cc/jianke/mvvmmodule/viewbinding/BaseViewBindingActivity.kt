@@ -1,16 +1,17 @@
-package cc.jianke.mvvmmodule.mvvm
+package cc.jianke.mvvmmodule.viewbinding
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
+import cc.jianke.mvvmmodule.base.BaseActivity
 import com.dylanc.viewbinding.base.ViewBindingUtil
 
 /**
  * @Author: wlf
  * @CreateDate: 2022/4/6 10:03
- * @Description: Activity基类
+ * @Description: ViewBinding Activity基类
  */
-abstract class BaseActivity<VB: ViewBinding>: AppCompatActivity() {
+abstract class BaseViewBindingActivity<VB: ViewBinding>: BaseActivity() {
 
     lateinit var mViewBinding: VB
 
