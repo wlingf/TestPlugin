@@ -9,7 +9,7 @@ import cc.jianke.mvvmmodule.utils.ViewModelUtil
  * @CreateDate: 2022/4/12 11:40
  * @Description: MVVM框架 DataBinding Fragment 基类
  */
-abstract class BaseDataBindingMvvmFragment<DB: ViewDataBinding, VM: BaseViewModel>(layoutId: Int): BaseDataBindingFragment<DB>(layoutId) {
+abstract class BaseDataBindingMvvmFragment<VB: ViewDataBinding, VM: BaseViewModel>(layoutId: Int): BaseDataBindingFragment<VB>(layoutId) {
 
     lateinit var mViewModel: VM
 

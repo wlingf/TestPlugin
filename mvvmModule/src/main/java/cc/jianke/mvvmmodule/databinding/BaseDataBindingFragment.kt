@@ -15,9 +15,9 @@ import cc.jianke.mvvmmodule.base.BaseFragment
  * @CreateDate: 2022/4/12 11:37
  * @Description: DataBinding Fragment 基类
  */
-abstract class BaseDataBindingFragment<DB: ViewDataBinding>(@LayoutRes private val layoutId: Int): BaseFragment() {
+abstract class BaseDataBindingFragment<VB: ViewDataBinding>(@LayoutRes private val layoutId: Int): BaseFragment() {
 
-    lateinit var mBindView: DB
+    lateinit var mBindView: VB
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -10,7 +10,7 @@ import cc.jianke.mvvmmodule.utils.ViewModelUtil
  * @CreateDate: 2022/4/12 10:47
  * @Description: MVVM框架 DataBinding Activity 基类
  */
-abstract class BaseDataBindingMvvmActivity<DB: ViewDataBinding, VM: BaseViewModel>(layoutId: Int): BaseDataBindingActivity<DB>(layoutId) {
+abstract class BaseDataBindingMvvmActivity<VB: ViewDataBinding, VM: BaseViewModel>(layoutId: Int): BaseDataBindingActivity<VB>(layoutId) {
 
     lateinit var mViewModel: VM
 

@@ -12,9 +12,9 @@ import cc.jianke.mvvmmodule.base.BaseActivity
  * @CreateDate: 2022/4/12 10:39
  * @Description: DataBinding Activity 基类
  */
-abstract class BaseDataBindingActivity<DB: ViewDataBinding>(@LayoutRes private val layoutId: Int): BaseActivity() {
+abstract class BaseDataBindingActivity<VB: ViewDataBinding>(@LayoutRes private val layoutId: Int): BaseActivity() {
 
-    lateinit var mBindView: DB
+    lateinit var mBindView: VB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
