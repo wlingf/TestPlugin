@@ -27,6 +27,7 @@
 
         <activity android:name="cc.jianke.pluginmodule.ProxyActivity"/>
         <activity android:name=".SecondActivity"/>
+        <activity android:name=".TestDataBindActivity"/>
     </application>
 
 </manifest>

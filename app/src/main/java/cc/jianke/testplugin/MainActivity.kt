@@ -132,6 +132,6 @@ open class MainActivity : BaseActivity() {
     }
 
     private fun testNet() {
-        ActivityUtils.startActivity(SecondActivity::class.java)
+        ActivityUtils.startActivity(TestDataBindActivity::class.java)
     }
 }
