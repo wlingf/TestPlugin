@@ -1,11 +1,9 @@
 package cc.jianke.mvvmmodule.mvvm.viewbinding
 
-import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import cc.jianke.mvvmmodule.mvvm.BaseViewModel
+import cc.jianke.mvvmmodule.utils.ViewModelUtil
 import cc.jianke.mvvmmodule.viewbinding.BaseViewBindingActivity
-import java.lang.NullPointerException
-import java.lang.reflect.ParameterizedType
 
 /**
  * @Author: wlf
@@ -24,20 +22,5 @@ abstract class BaseViewBindingMvvmActivity<VB: ViewBinding, VM: BaseViewModel>: 
     /**
      * 获取ViewModel 子类可以复写，自行初始化
      */
-    protected open fun getViewModel(): VM {
-        var viewModel: VM? = null
-        //当前对象超类的Type
-        val type = javaClass.genericSuperclass
-        //ParameterizedType表示参数化的类型
-        if (type != null && type is ParameterizedType) {
-            //返回此类型实际类型参数的Type对象数组
-            val actualTypeArguments = type.actualTypeArguments
-            val tClass = actualTypeArguments[1]
-            viewModel = ViewModelProvider(this)[tClass as Class<VM>]
-        }
-        if (viewModel == null) {
-            throw NullPointerException("viewModel is null, please create viewModel")
-        }
-        return viewModel
-    }
+    protected open fun getViewModel(): VM = ViewModelUtil.getViewModel(this, this) as VM
 }
