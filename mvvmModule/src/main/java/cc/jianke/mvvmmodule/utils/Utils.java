@@ -17,10 +17,10 @@ import cc.jianke.mvvmmodule.mvvm.BaseViewModel;
  */
 public class Utils {
 
-    public static BaseViewModel getViewModel(Context context, ViewModelStoreOwner owner) {
+    public static BaseViewModel getViewModel(ViewModelStoreOwner owner) {
         BaseViewModel viewModel = null;
         //当前对象超类的Type
-        ParameterizedType type = (ParameterizedType) context.getClass().getGenericSuperclass();
+        ParameterizedType type = (ParameterizedType) owner.getClass().getGenericSuperclass();
         //ParameterizedType表示参数化的类型
         if (type != null && type instanceof ParameterizedType) {
             //返回此类型实际类型参数的Type对象数组

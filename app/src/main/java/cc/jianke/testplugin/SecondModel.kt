@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import cc.jianke.mvvmmodule.mvvm.BaseViewModel
 import cc.jianke.testplugin.net.Api
-import cc.jianke.testplugin.net.ArticleListEntity
 import cc.jianke.testplugin.net.BaseResponse
+import cc.jianke.testplugin.wanandroid.entity.ArticleListEntity
 import kotlinx.coroutines.launch
 
 /**

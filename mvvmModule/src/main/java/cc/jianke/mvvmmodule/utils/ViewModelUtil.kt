@@ -13,11 +13,10 @@ object ViewModelUtil {
 
     /**
      * 获取ViewModel
-     * @param context
      * @param owner
      * @return
      */
-    fun getViewModel(context: Context, owner: ViewModelStoreOwner): BaseViewModel {
+    fun getViewModel(owner: ViewModelStoreOwner): BaseViewModel {
 //        var viewModel: BaseViewModel? = null
 //        //当前对象超类的Type
 //        val type = context.javaClass.genericSuperclass
@@ -38,6 +37,6 @@ object ViewModelUtil {
 //            throw NullPointerException("viewModel is null, please create viewModel")
 //        }
 //        return viewModel as BaseViewModel
-        return Utils.getViewModel(context, owner)
+        return Utils.getViewModel(owner)
     }
 }

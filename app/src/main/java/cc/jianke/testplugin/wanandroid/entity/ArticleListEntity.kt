@@ -1,4 +1,4 @@
-package cc.jianke.testplugin.net
+package cc.jianke.testplugin.wanandroid.entity
 
 /**
  * @Author: wlf

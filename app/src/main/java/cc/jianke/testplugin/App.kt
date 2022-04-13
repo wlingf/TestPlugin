@@ -1,10 +1,29 @@
 package cc.jianke.testplugin
 
 import android.app.Application
+import android.content.Context
 import cc.jianke.pluginmodule.PluginManager
 import okhttp3.OkHttpClient
 import rxhttp.RxHttpPlugins
 import java.util.concurrent.TimeUnit
+import com.scwang.smart.refresh.footer.ClassicsFooter
+
+import com.scwang.smart.refresh.layout.api.RefreshLayout
+
+import com.scwang.smart.refresh.layout.api.RefreshFooter
+
+import com.scwang.smart.refresh.layout.listener.DefaultRefreshFooterCreator
+
+import com.scwang.smart.refresh.layout.SmartRefreshLayout
+
+import com.scwang.smart.refresh.header.ClassicsHeader
+
+import com.scwang.smart.refresh.layout.api.RefreshHeader
+
+import com.scwang.smart.refresh.layout.listener.DefaultRefreshHeaderCreator
+
+
+
 
 /**
  * @Author: wlf
@@ -28,4 +47,10 @@ class App: Application() {
             }
     }
 
+    companion object {
+        init {
+            SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout -> ClassicsHeader(context) }
+            SmartRefreshLayout.setDefaultRefreshFooterCreator { context, layout -> ClassicsFooter(context) }
+        }
+    }
 }

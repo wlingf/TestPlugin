@@ -21,5 +21,5 @@ abstract class BaseDataBindingMvvmFragment<VB: ViewDataBinding, VM: BaseViewMode
     /**
      * 获取ViewModel 子类可以复写，自行初始化
      */
-    protected open fun getViewModel(): VM = ViewModelUtil.getViewModel(activity!!, this) as VM
+    protected open fun getViewModel(): VM = ViewModelUtil.getViewModel(this) as VM
 }

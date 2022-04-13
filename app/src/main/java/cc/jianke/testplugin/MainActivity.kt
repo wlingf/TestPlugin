@@ -1,33 +1,23 @@
 package cc.jianke.testplugin
 
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
-import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import cc.jianke.pluginmodule.IPluginMessageEvent
 import cc.jianke.pluginmodule.PluginEventConst
 import cc.jianke.pluginmodule.PluginManager
 import cc.jianke.pluginmodule.PluginMessageEvent
-import cc.jianke.testplugin.net.ArticleListEntity
-import cc.jianke.testplugin.net.BaseResponse
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.SPUtils
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
 import com.jeremyliao.liveeventbus.LiveEventBus
-import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import rxhttp.toDownload
-import rxhttp.toFlow
 import rxhttp.wrapper.param.RxHttp
-import java.util.*
 
 
 open class MainActivity : BaseActivity() {

@@ -10,6 +10,9 @@ dependencyResolutionManagement {
         maven {
             url 'https://maven.aliyun.com/repository/central'
         }
+        maven {
+            url "https://s01.oss.sonatype.org/content/groups/public"
+        }
         google()
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
@@ -22,3 +25,4 @@ rootProject.name = "TestPlugin"
 include ':app'
 include ':pluginModule'
 include ':mvvmModule'
+include ':wanAndroid'

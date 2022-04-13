@@ -1,4 +1,6 @@
-package cc.jianke.testplugin.net
+package cc.jianke.testplugin.wanandroid.entity
+
+import cc.jianke.testplugin.net.BaseEntity
 
 /**
  * @Author: wlf

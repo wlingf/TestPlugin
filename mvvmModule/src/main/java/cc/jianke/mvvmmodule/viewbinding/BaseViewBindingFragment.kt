@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import cc.jianke.mvvmmodule.base.BaseFragment
+import cc.jianke.mvvmmodule.base.BaseLazyFragment
 import com.dylanc.viewbinding.base.ViewBindingUtil
 
 /**
@@ -15,7 +16,7 @@ import com.dylanc.viewbinding.base.ViewBindingUtil
  * @CreateDate: 2022/4/6 11:12
  * @Description: ViewBinding Fragment基类
  */
-abstract class BaseViewBindingFragment<VB: ViewBinding>: BaseFragment() {
+abstract class BaseViewBindingFragment<VB: ViewBinding>: BaseLazyFragment() {
 
     var mViewBinding: VB? = null
 
@@ -28,30 +29,8 @@ abstract class BaseViewBindingFragment<VB: ViewBinding>: BaseFragment() {
         return mViewBinding!!.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initViewBefore()
-        initView()
-        initEvent()
-        initData()
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         mViewBinding = null
-    }
-
-    protected abstract fun initView()
-
-    protected abstract fun initEvent()
-
-    protected abstract fun initData()
-
-    open fun initViewBefore() {
-
     }
 }
