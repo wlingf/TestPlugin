@@ -14,11 +14,11 @@ import cc.jianke.mvvmmodule.base.BaseActivity
  */
 abstract class BaseDataBindingActivity<VB: ViewDataBinding>(@LayoutRes private val layoutId: Int): BaseActivity() {
 
-    lateinit var mBindView: VB
+    lateinit var mViewBind: VB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBindView = DataBindingUtil.setContentView(this, layoutId)
+        mViewBind = DataBindingUtil.setContentView(this, layoutId)
         initViewBefore()
         initView()
         initEvent()
@@ -36,7 +36,7 @@ abstract class BaseDataBindingActivity<VB: ViewDataBinding>(@LayoutRes private v
     }
 
     override fun onDestroy() {
-        mBindView.unbind()
+        mViewBind.unbind()
         super.onDestroy()
     }
 

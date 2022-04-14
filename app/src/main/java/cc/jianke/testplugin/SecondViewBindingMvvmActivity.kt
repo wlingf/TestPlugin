@@ -25,7 +25,7 @@ class SecondViewBindingMvvmActivity: BaseViewBindingMvvmActivity<ActivitySecondB
                 Log.e("TAG", entity.title)
                 s += "${entity.title}\n"
             }
-            mViewBinding.textView.text = s
+            mViewBind.textView.text = s
         }
     }
 

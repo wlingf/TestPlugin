@@ -1,6 +1,7 @@
 package cc.jianke.testplugin.wanandroid.entity
 
 import cc.jianke.testplugin.net.BaseEntity
+import com.google.gson.annotations.SerializedName
 
 /**
  * @Author: wlf
@@ -20,4 +21,7 @@ class ArticleEntity: BaseEntity() {
     var id = 0
 
     var niceDate = ""
+
+    @SerializedName("collect")
+    var isCollection = false
 }

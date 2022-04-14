@@ -1,6 +1,5 @@
 package cc.jianke.testplugin.wanandroid.activity
 
-import android.util.Log
 import androidx.fragment.app.Fragment
 import cc.jianke.mvvmmodule.mvvm.databinding.BaseDataBindingMvvmActivity
 import cc.jianke.testplugin.R
@@ -8,6 +7,7 @@ import cc.jianke.testplugin.databinding.ActivityIndexBinding
 import cc.jianke.testplugin.wanandroid.entity.IndexTabEntity
 import cc.jianke.testplugin.wanandroid.fragment.HomeFragment
 import cc.jianke.testplugin.wanandroid.fragment.KnowledgeFragment
+import cc.jianke.testplugin.wanandroid.fragment.MyFragment
 import cc.jianke.testplugin.wanandroid.utils.FragmentChangeManager
 import cc.jianke.testplugin.wanandroid.viewmodel.MainViewModel
 import com.flyco.tablayout.listener.CustomTabEntity
@@ -21,10 +21,11 @@ import java.util.ArrayList
  */
 class IndexActivity: BaseDataBindingMvvmActivity<ActivityIndexBinding, MainViewModel>(R.layout.activity_index) {
 
-    private val fragmentList: MutableList<Fragment> = mutableListOf(HomeFragment(), KnowledgeFragment())
+    private val fragmentList: MutableList<Fragment> = mutableListOf(HomeFragment(), KnowledgeFragment(), MyFragment())
     private val tabList: MutableList<CustomTabEntity> = mutableListOf(
         IndexTabEntity("首页", R.mipmap.icon_index_sel, R.mipmap.icon_index_noraml),
-        IndexTabEntity("知识体系", R.mipmap.icon_knowledge_sel, R.mipmap.icon_knowledge_normal)
+        IndexTabEntity("知识体系", R.mipmap.icon_knowledge_sel, R.mipmap.icon_knowledge_normal),
+        IndexTabEntity("我的", R.mipmap.icon_my_sel, R.mipmap.icon_my_normal)
     )
     private lateinit var mFragmentChangeManager: FragmentChangeManager
 
@@ -33,13 +34,13 @@ class IndexActivity: BaseDataBindingMvvmActivity<ActivityIndexBinding, MainViewM
             supportFragmentManager,
             R.id.fragment_container,
             fragmentList as ArrayList<Fragment>)
-        mBindView.tabLayout.setTabData(
+        mViewBind.tabLayout.setTabData(
             tabList as ArrayList<CustomTabEntity>
         )
     }
 
     override fun initEvent() {
-        mBindView.tabLayout.setOnTabSelectListener(object : OnTabSelectListener {
+        mViewBind.tabLayout.setOnTabSelectListener(object : OnTabSelectListener {
             override fun onTabSelect(position: Int) {
                 mFragmentChangeManager.setFragments(position)
             }

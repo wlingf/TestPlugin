@@ -4,13 +4,18 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Android/TestPlugin/app/src/main/res/layout/activity_index.xml" value="0.21302083333333333" />
+        <entry key="..\:/Android/TestPlugin/app/src/main/res/layout/activity_login.xml" value="0.3138586956521739" />
         <entry key="..\:/Android/TestPlugin/app/src/main/res/layout/activity_main.xml" value="0.19010416666666666" />
         <entry key="..\:/Android/TestPlugin/app/src/main/res/layout/activity_second.xml" value="0.20572916666666666" />
         <entry key="..\:/Android/TestPlugin/app/src/main/res/layout/activity_test_databinding.xml" value="0.34148550724637683" />
+        <entry key="..\:/Android/TestPlugin/app/src/main/res/layout/activity_web.xml" value="0.32518115942028986" />
         <entry key="..\:/Android/TestPlugin/app/src/main/res/layout/fragment_home.xml" value="0.28854166666666664" />
         <entry key="..\:/Android/TestPlugin/app/src/main/res/layout/fragment_knowledge.xml" value="0.28854166666666664" />
+        <entry key="..\:/Android/TestPlugin/app/src/main/res/layout/fragment_my.xml" value="0.3079710144927536" />
         <entry key="..\:/Android/TestPlugin/app/src/main/res/layout/fragment_test.xml" value="0.35144927536231885" />
         <entry key="..\:/Android/TestPlugin/app/src/main/res/layout/item_home_adapter.xml" value="0.32518115942028986" />
+        <entry key="..\:/Android/TestPlugin/app/src/main/res/layout/item_knowledge_adapter.xml" value="0.3138586956521739" />
+        <entry key="..\:/Android/TestPlugin/app/src/main/res/layout/item_my_adapter.xml" value="0.3079710144927536" />
         <entry key="..\:/Android/TestPlugin/app/src/main/res/layout/wa_activity_main.xml" value="0.28854166666666664" />
         <entry key="..\:/Android/TestPlugin/app/src/main/res/xml/network_config.xml" value="0.32518115942028986" />
       </map>

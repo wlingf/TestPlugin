@@ -13,12 +13,12 @@ import com.dylanc.viewbinding.base.ViewBindingUtil
  */
 abstract class BaseViewBindingActivity<VB: ViewBinding>: BaseActivity() {
 
-    lateinit var mViewBinding: VB
+    lateinit var mViewBind: VB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mViewBinding = ViewBindingUtil.inflateWithGeneric(this, layoutInflater)
-        setContentView(mViewBinding.root)
+        mViewBind = ViewBindingUtil.inflateWithGeneric(this, layoutInflater)
+        setContentView(mViewBind.root)
         initViewBefore()
         initView()
         initEvent()

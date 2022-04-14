@@ -15,5 +15,6 @@ class HomeFragmentAdapter: BaseQuickAdapter<ArticleEntity, BaseViewHolder>(R.lay
     override fun convert(holder: BaseViewHolder, item: ArticleEntity) {
         holder.setText(R.id.tv_title, item.title)
             .setText(R.id.tv_time, item.niceDate)
+            .setImageResource(R.id.iv_collection, if (item.isCollection) R.mipmap.icon_collection else R.mipmap.icon_un_collection)
     }
 }

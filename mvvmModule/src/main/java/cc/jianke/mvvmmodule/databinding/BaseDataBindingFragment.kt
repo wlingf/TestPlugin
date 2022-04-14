@@ -19,19 +19,19 @@ import cc.jianke.mvvmmodule.base.BaseLazyFragment
  */
 abstract class BaseDataBindingFragment<VB: ViewDataBinding>(@LayoutRes private val layoutId: Int): BaseLazyFragment() {
 
-    lateinit var mBindView: VB
+    lateinit var mViewBind: VB
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mBindView = DataBindingUtil.inflate(inflater, layoutId, container, false)
-        return mBindView.root
+        mViewBind = DataBindingUtil.inflate(inflater, layoutId, container, false)
+        return mViewBind.root
     }
 
     override fun onDestroy() {
-        mBindView.unbind()
+        mViewBind.unbind()
         super.onDestroy()
     }
 

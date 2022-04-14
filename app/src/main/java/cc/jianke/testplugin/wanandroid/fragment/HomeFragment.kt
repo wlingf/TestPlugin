@@ -1,20 +1,30 @@
 package cc.jianke.testplugin.wanandroid.fragment
 
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import cc.jianke.mvvmmodule.mvvm.databinding.BaseDataBindingMvvmFragment
 import cc.jianke.testplugin.R
 import cc.jianke.testplugin.databinding.FragmentHomeBinding
+import cc.jianke.testplugin.wanandroid.activity.LoginActivity
+import cc.jianke.testplugin.wanandroid.activity.WebActivity
 import cc.jianke.testplugin.wanandroid.adapter.HomeFragmentAdapter
+import cc.jianke.testplugin.wanandroid.entity.ArticleEntity
 import cc.jianke.testplugin.wanandroid.entity.BannerEntity
+import cc.jianke.testplugin.wanandroid.enum.LoginEnum
+import cc.jianke.testplugin.wanandroid.event.LoginEvent
 import cc.jianke.testplugin.wanandroid.utils.SmartRefreshUtil
+import cc.jianke.testplugin.wanandroid.utils.UserUtil
 import cc.jianke.testplugin.wanandroid.viewmodel.HomeFragmentVideModel
+import com.blankj.utilcode.util.ActivityUtils
 import com.bumptech.glide.Glide
+import com.jeremyliao.liveeventbus.LiveEventBus
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 import com.youth.banner.indicator.CircleIndicator
+import com.youth.banner.listener.OnBannerListener
 
 /**
  * @Author: wlf
@@ -28,20 +38,40 @@ class HomeFragment: BaseDataBindingMvvmFragment<FragmentHomeBinding, HomeFragmen
     private var refreshStatus = SmartRefreshUtil.NORMAL
 
     override fun initView() {
-        mBindView.banner.addBannerLifecycleObserver(this).indicator = CircleIndicator(mContext)
-        mBindView.recycleView.layoutManager = LinearLayoutManager(mContext)
+
+        initEventBus()
+
+        mViewBind.banner.addBannerLifecycleObserver(this)
+            .indicator = CircleIndicator(mContext)
+
+        mViewBind.recycleView.layoutManager = LinearLayoutManager(mContext)
         mAdapter = HomeFragmentAdapter()
         mAdapter.setOnItemClickListener { adapter, view, position ->
-
+            val entity = mAdapter.data[position]
+            WebActivity.toWeb(mContext, entity.link)
         }
-        mBindView.recycleView.adapter = mAdapter
-        mBindView.smartLayout.setOnLoadMoreListener(this)
-        mBindView.smartLayout.setOnRefreshListener(this)
+        mAdapter.addChildClickViewIds(R.id.iv_collection)
+        mAdapter.setOnItemChildClickListener { adapter, view, position ->
+            if (!UserUtil.isLogin()){
+                ActivityUtils.startActivity(LoginActivity::class.java)
+                return@setOnItemChildClickListener
+            }
+            val entity = mAdapter.data[position]
+            if (entity.isCollection){
+                mViewModel.unCollection(entity.id)
+            }else{
+                mViewModel.collection(entity.id)
+            }
+        }
+        mViewBind.recycleView.adapter = mAdapter
+
+        mViewBind.smartLayout.setOnLoadMoreListener(this)
+        mViewBind.smartLayout.setOnRefreshListener(this)
     }
 
     override fun initEvent() {
         mViewModel.bannerEntityLiveData.observe(this) {
-            mBindView.banner.setAdapter(object : BannerImageAdapter<BannerEntity>(it) {
+            mViewBind.banner.setAdapter(object : BannerImageAdapter<BannerEntity>(it) {
                 override fun onBindView(
                     holder: BannerImageHolder?,
                     data: BannerEntity?,
@@ -51,13 +81,25 @@ class HomeFragment: BaseDataBindingMvvmFragment<FragmentHomeBinding, HomeFragmen
                     Glide.with(mContext).load(data!!.imagePath).into(holder!!.imageView)
                 }
             })
+                .setOnBannerListener { data, position ->
+                    val entity = data as BannerEntity
+                    WebActivity.toWeb(mContext, entity.url)
+                }
         }
         mViewModel.articleListEntityLiveData.observe(this){
             SmartRefreshUtil.setSmartRefreshStatus(
-                mBindView.smartLayout,
+                mViewBind.smartLayout,
                 mAdapter,
-                it.datas,
+                it,
                 refreshStatus)
+        }
+        mViewModel.collectionLiveData.observe(this){
+            mAdapter.data.forEachIndexed { index, articleEntity ->
+                if (articleEntity.id == it["id"]) {
+                    articleEntity.isCollection = it["collect"] as Boolean
+                    mAdapter.notifyItemChanged(index)
+                }
+            }
         }
     }
 
@@ -76,5 +118,12 @@ class HomeFragment: BaseDataBindingMvvmFragment<FragmentHomeBinding, HomeFragmen
         refreshStatus = SmartRefreshUtil.LOAD_MORE
         page++
         mViewModel.getList(page)
+    }
+
+    private fun initEventBus() {
+        LiveEventBus.get(LoginEvent::class.java)
+            .observe(this, {
+                onRefresh(mViewBind.smartLayout)
+            })
     }
 }

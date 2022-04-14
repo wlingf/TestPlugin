@@ -29,6 +29,8 @@
         <activity android:name="cc.jianke.pluginmodule.ProxyActivity"/>
         <activity android:name=".SecondViewBindingMvvmActivity"/>
         <activity android:name=".TestDataBindActivity"/>
+        <activity android:name=".wanandroid.activity.WebActivity"/>
+        <activity android:name=".wanandroid.activity.LoginActivity"/>
     </application>
 
 </manifest>

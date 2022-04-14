@@ -9,7 +9,7 @@ class BaseResponse<T> {
 
     var errorCode = 0
 
-    var errorMessage = ""
+    var errorMsg = ""
 
     var data: T? = null
 }

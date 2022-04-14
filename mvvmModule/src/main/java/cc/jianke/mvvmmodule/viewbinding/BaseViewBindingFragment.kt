@@ -18,19 +18,19 @@ import com.dylanc.viewbinding.base.ViewBindingUtil
  */
 abstract class BaseViewBindingFragment<VB: ViewBinding>: BaseLazyFragment() {
 
-    var mViewBinding: VB? = null
+    var mViewBind: VB? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mViewBinding = ViewBindingUtil.inflateWithGeneric(this, inflater, container, false)
-        return mViewBinding!!.root
+        mViewBind = ViewBindingUtil.inflateWithGeneric(this, inflater, container, false)
+        return mViewBind!!.root
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mViewBinding = null
+        mViewBind = null
     }
 }

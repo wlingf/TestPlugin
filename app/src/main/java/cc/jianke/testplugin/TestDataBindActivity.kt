@@ -21,7 +21,7 @@ class TestDataBindActivity: BaseDataBindingMvvmActivity<ActivityTestDatabindingB
                 Log.e("TAG", entity.title)
                 s += "${entity.title}\n"
             }
-            mBindView.example = s
+            mViewBind.example = s
         }
     }
 
