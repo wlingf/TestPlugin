@@ -29,11 +29,6 @@ abstract class BaseLazyFragment: BaseFragment() {
      */
     open fun isLazy(): Boolean = true
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("ta", "")
-    }
-
     private fun initLazy(){
         initViewBefore()
         initView()
