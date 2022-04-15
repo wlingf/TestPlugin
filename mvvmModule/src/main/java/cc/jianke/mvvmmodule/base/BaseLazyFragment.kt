@@ -1,5 +1,7 @@
 package cc.jianke.mvvmmodule.base
 
+import android.util.Log
+
 /**
  * @Author: wlf
  * @CreateDate: 2022/4/13 15:40
@@ -26,6 +28,11 @@ abstract class BaseLazyFragment: BaseFragment() {
      * @return
      */
     open fun isLazy(): Boolean = true
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("ta", "")
+    }
 
     private fun initLazy(){
         initViewBefore()

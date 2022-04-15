@@ -7,5 +7,5 @@ import com.jeremyliao.liveeventbus.core.LiveEvent
  * @CreateDate: 2022/4/15 14:31
  * @Description:
  */
-class CollectEvent constructor(val id: Int): LiveEvent {
+class CollectEvent constructor(val id: Int, val isCollect: Boolean = false): LiveEvent {
 }

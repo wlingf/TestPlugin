@@ -130,7 +130,7 @@ class HomeFragment: BaseDataBindingMvvmFragment<FragmentHomeBinding, HomeFragmen
             .observe(this, {
                 mAdapter.data.forEach { entity ->
                     if (it.id == entity.id){
-                        entity.isCollection = false
+                        entity.isCollection = it.isCollect
                         mAdapter.notifyDataSetChanged()
                     }
                 }

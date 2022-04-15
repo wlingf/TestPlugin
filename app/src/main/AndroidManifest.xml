@@ -33,6 +33,7 @@
         <activity android:name=".wanandroid.activity.LoginActivity"/>
         <activity android:name=".wanandroid.activity.CoinActivity"/>
         <activity android:name=".wanandroid.activity.CollectActivity"/>
+        <activity android:name=".wanandroid.activity.KnowledgeDetailActivity"/>
     </application>
 
 </manifest>
