@@ -30,6 +30,8 @@
                 android:hint="请输入账号"
                 android:maxLines="1"
                 android:maxLength="11"
+                android:textColor="@color/color_333333"
+                android:textColorHint="@color/color_666666"
                 android:inputType="phone"/>
 
             <androidx.appcompat.widget.AppCompatEditText
@@ -40,6 +42,8 @@
                 android:hint="请输入密码"
                 android:maxLines="1"
                 android:maxLength="8"
+                android:textColor="@color/color_333333"
+                android:textColorHint="@color/color_666666"
                 android:inputType="textPassword"/>
 
             <LinearLayout

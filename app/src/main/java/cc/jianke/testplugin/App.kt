@@ -2,6 +2,8 @@ package cc.jianke.testplugin
 
 import android.app.Application
 import cc.jianke.pluginmodule.PluginManager
+import cc.jianke.testplugin.wanandroid.utils.SmartRefreshUtil
+import com.blankj.utilcode.util.AppUtils
 import okhttp3.OkHttpClient
 import rxhttp.RxHttpPlugins
 import java.util.concurrent.TimeUnit
@@ -30,9 +32,12 @@ class App: Application() {
             .cookieJar(CookieStore(File(getExternalFilesDir(""), "WanAndroidCookie")))
             .build())
             .setDebug(BuildConfig.DEBUG)
-//            .setOnParamAssembly {
-//                it.add("packageName", BuildConfig.APPLICATION_ID)
-//            }
+            .setOnParamAssembly {
+                if (it.method.isGet){
+                    it.add("page_size", SmartRefreshUtil.PAGE_SIZE)
+                }
+                it.add("version_code", AppUtils.getAppVersionCode())
+            }
     }
 
     companion object {

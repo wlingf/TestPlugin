@@ -13,7 +13,7 @@ object SmartRefreshUtil {
     const val NORMAL = 0
     const val REFRESH = 1
     const val LOAD_MORE = 2
-    private const val PAGE_SIZE = 20
+    const val PAGE_SIZE = 20
 
     fun <T> setSmartRefreshStatus(refreshLayout: SmartRefreshLayout,
                               adapter: BaseQuickAdapter<T, *>,
@@ -34,7 +34,7 @@ object SmartRefreshUtil {
             }
         }
         val isCanLoadMore = data.isNullOrEmpty() || data.size < pageSize
-        refreshLayout.setEnableLoadMore(!isCanLoadMore)
+//        refreshLayout.setEnableLoadMore(!isCanLoadMore)
         refreshLayout.setNoMoreData(isCanLoadMore)
     }
 }

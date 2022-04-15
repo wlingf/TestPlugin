@@ -11,6 +11,7 @@ import cc.jianke.testplugin.wanandroid.adapter.HomeFragmentAdapter
 import cc.jianke.testplugin.wanandroid.entity.ArticleEntity
 import cc.jianke.testplugin.wanandroid.entity.BannerEntity
 import cc.jianke.testplugin.wanandroid.enum.LoginEnum
+import cc.jianke.testplugin.wanandroid.event.CollectEvent
 import cc.jianke.testplugin.wanandroid.event.LoginEvent
 import cc.jianke.testplugin.wanandroid.utils.SmartRefreshUtil
 import cc.jianke.testplugin.wanandroid.utils.UserUtil
@@ -53,7 +54,7 @@ class HomeFragment: BaseDataBindingMvvmFragment<FragmentHomeBinding, HomeFragmen
         mAdapter.addChildClickViewIds(R.id.iv_collection)
         mAdapter.setOnItemChildClickListener { adapter, view, position ->
             if (!UserUtil.isLogin()){
-                ActivityUtils.startActivity(LoginActivity::class.java)
+                UserUtil.toLogin()
                 return@setOnItemChildClickListener
             }
             val entity = mAdapter.data[position]
@@ -124,6 +125,15 @@ class HomeFragment: BaseDataBindingMvvmFragment<FragmentHomeBinding, HomeFragmen
         LiveEventBus.get(LoginEvent::class.java)
             .observe(this, {
                 onRefresh(mViewBind.smartLayout)
+            })
+        LiveEventBus.get(CollectEvent::class.java)
+            .observe(this, {
+                mAdapter.data.forEach { entity ->
+                    if (it.id == entity.id){
+                        entity.isCollection = false
+                        mAdapter.notifyDataSetChanged()
+                    }
+                }
             })
     }
 }

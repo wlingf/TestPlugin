@@ -18,9 +18,13 @@ class ArticleEntity: BaseEntity() {
 
     var title = ""
 
-    var id = 0
+    var id: Int = 0
 
     var niceDate = ""
+
+    val desc = ""
+
+    val originId: Int = 0
 
     @SerializedName("collect")
     var isCollection = false

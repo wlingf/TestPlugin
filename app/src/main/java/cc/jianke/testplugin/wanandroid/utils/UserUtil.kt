@@ -1,6 +1,8 @@
 package cc.jianke.testplugin.wanandroid.utils
 
 import cc.jianke.testplugin.net.Url
+import cc.jianke.testplugin.wanandroid.activity.LoginActivity
+import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.SPUtils
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 
@@ -34,5 +36,9 @@ object UserUtil {
         val iCookieJar = RxHttpPlugins.getOkHttpClient().cookieJar as ICookieJar
         val httpUrl = Url.BASE_URL.toHttpUrlOrNull()
         iCookieJar.removeCookie(httpUrl)
+    }
+
+    fun toLogin(){
+        ActivityUtils.startActivity(LoginActivity::class.java)
     }
 }

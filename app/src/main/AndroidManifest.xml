@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.TestPlugin">
+        android:theme="@style/App_style">
         <activity
             android:name=".wanandroid.activity.IndexActivity"
             android:exported="true">
@@ -31,6 +31,8 @@
         <activity android:name=".TestDataBindActivity"/>
         <activity android:name=".wanandroid.activity.WebActivity"/>
         <activity android:name=".wanandroid.activity.LoginActivity"/>
+        <activity android:name=".wanandroid.activity.CoinActivity"/>
+        <activity android:name=".wanandroid.activity.CollectActivity"/>
     </application>
 
 </manifest>

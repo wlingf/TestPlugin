@@ -13,6 +13,8 @@ class BaseListResponse<T> {
 
     var errorMsg = ""
 
+    var size = 0
+
     @SerializedName(value = "datas", alternate = ["data"])
     var datas: MutableList<T>? = null
 }
