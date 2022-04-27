@@ -15,12 +15,14 @@ import kotlinx.coroutines.launch
  */
 class KnowledgeFragmentViewModel: BaseViewModel() {
 
-    val knowledgeListEntityLiveData = MutableLiveData<MutableList<KnowledgeListEntity>>()
+    private val _knowledgeListEntityLiveData = MutableLiveData<MutableList<KnowledgeListEntity>>()
+    val knowledgeListEntityLiveData: MutableLiveData<MutableList<KnowledgeListEntity>>
+        get() = _knowledgeListEntityLiveData
 
     fun getKnowledgeList() {
         viewModelScope.launch {
             Api.get<MutableList<KnowledgeListEntity>>("tree/json"){
-                knowledgeListEntityLiveData.postValue(it)
+                _knowledgeListEntityLiveData.postValue(it)
             }
         }
     }

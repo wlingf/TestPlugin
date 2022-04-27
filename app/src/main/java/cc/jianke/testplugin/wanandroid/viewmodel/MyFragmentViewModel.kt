@@ -14,12 +14,14 @@ import kotlinx.coroutines.launch
  */
 class MyFragmentViewModel: BaseViewModel() {
 
-    val accountInfoLiveData = MutableLiveData<AccountInfoEntity>()
+    private val _accountInfoLiveData = MutableLiveData<AccountInfoEntity>()
+    val accountInfoLiveData: MutableLiveData<AccountInfoEntity>
+        get() = _accountInfoLiveData
 
     fun getAccountInfo() {
         viewModelScope.launch {
             Api.get<AccountInfoEntity>("user/lg/userinfo/json"){
-                accountInfoLiveData.postValue(it)
+                _accountInfoLiveData.postValue(it)
             }
         }
     }

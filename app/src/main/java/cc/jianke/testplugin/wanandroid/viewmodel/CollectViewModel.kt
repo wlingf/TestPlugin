@@ -1,5 +1,6 @@
 package cc.jianke.testplugin.wanandroid.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import cc.jianke.mvvmmodule.mvvm.BaseViewModel
@@ -15,13 +16,18 @@ import kotlinx.coroutines.launch
  */
 class CollectViewModel: BaseViewModel() {
 
-    val collectLiveData = MutableLiveData<MutableList<ArticleEntity>>()
-    val collectionLiveData = MutableLiveData<MutableMap<String, Int>>()
+    private val _collectLiveData = MutableLiveData<MutableList<ArticleEntity>>()
+    val collectLiveData: LiveData<MutableList<ArticleEntity>>
+        get() = _collectLiveData
+
+    private val _collectionLiveData = MutableLiveData<MutableMap<String, Int>>()
+    val collectionLiveData: LiveData<MutableMap<String, Int>>
+        get() = _collectionLiveData
 
     fun getCollectList(page: Int) {
         viewModelScope.launch {
             Api.get<BaseListResponse<ArticleEntity>>("lg/collect/list/$page/json"){
-                collectLiveData.postValue(it.datas)
+                _collectLiveData.postValue(it.datas)
             }
         }
     }
@@ -34,7 +40,7 @@ class CollectViewModel: BaseViewModel() {
                 val map: MutableMap<String, Int> = mutableMapOf()
                 map["id"] = originId
                 map["position"] = position
-                collectionLiveData.postValue(map)
+                _collectionLiveData.postValue(map)
             }
         }
     }

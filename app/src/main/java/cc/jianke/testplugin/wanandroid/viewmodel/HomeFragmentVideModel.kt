@@ -23,16 +23,22 @@ import rxhttp.wrapper.param.toFlowResponse
  */
 class HomeFragmentVideModel: BaseViewModel() {
 
-    val bannerEntityLiveData = MutableLiveData<MutableList<BannerEntity>>()
+    private val _bannerEntityLiveData = MutableLiveData<MutableList<BannerEntity>>()
+    val bannerEntityLiveData: MutableLiveData<MutableList<BannerEntity>>
+        get() = _bannerEntityLiveData
 
-    val articleListEntityLiveData = MutableLiveData<MutableList<ArticleEntity>>()
+    private val _articleListEntityLiveData = MutableLiveData<MutableList<ArticleEntity>>()
+    val articleListEntityLiveData: MutableLiveData<MutableList<ArticleEntity>>
+        get() = _articleListEntityLiveData
 
-    val collectionLiveData = MutableLiveData<MutableMap<String, Any>>()
+    private val _collectionLiveData = MutableLiveData<MutableMap<String, Any>>()
+    val collectionLiveData: MutableLiveData<MutableMap<String, Any>>
+        get() = _collectionLiveData
 
     fun getBanner() {
         viewModelScope.launch {
             Api.get<MutableList<BannerEntity>>("banner/json") {
-                bannerEntityLiveData.postValue(it)
+                _bannerEntityLiveData.postValue(it)
             }
         }
     }
@@ -40,7 +46,7 @@ class HomeFragmentVideModel: BaseViewModel() {
     fun getList(page: Int = 0) {
         viewModelScope.launch {
             Api.get<BaseListResponse<ArticleEntity>>("article/list/$page/json") {
-                articleListEntityLiveData.postValue(it.datas)
+                _articleListEntityLiveData.postValue(it.datas)
             }
         }
     }
@@ -49,7 +55,7 @@ class HomeFragmentVideModel: BaseViewModel() {
         viewModelScope.launch {
             Api.postForm<String>("lg/collect/$id/json"){
                 val map = mapOf<String, Any>("id" to id, "collect" to true)
-                collectionLiveData.postValue(map as MutableMap<String, Any>)
+                _collectionLiveData.postValue(map as MutableMap<String, Any>)
             }
         }
     }
@@ -58,7 +64,7 @@ class HomeFragmentVideModel: BaseViewModel() {
         viewModelScope.launch {
             Api.postForm<String>("lg/uncollect_originId/$id/json"){
                 val map = mapOf<String, Any>("id" to id, "collect" to false)
-                collectionLiveData.postValue(map as MutableMap<String, Any>)
+                _collectionLiveData.postValue(map as MutableMap<String, Any>)
             }
         }
     }

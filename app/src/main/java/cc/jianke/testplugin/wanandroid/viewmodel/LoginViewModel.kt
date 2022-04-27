@@ -18,9 +18,13 @@ import kotlinx.coroutines.launch
  */
 class LoginViewModel: BaseViewModel() {
 
-    val registerLiveData = MutableLiveData<RegisterEntity>()
+    private val _registerLiveData = MutableLiveData<RegisterEntity>()
+    val registerLiveData: MutableLiveData<RegisterEntity>
+        get() = _registerLiveData
 
-    val loginLiveData = MutableLiveData<RegisterEntity>()
+    private val _loginLiveData = MutableLiveData<RegisterEntity>()
+    val loginLiveData: MutableLiveData<RegisterEntity>
+        get() = _loginLiveData
 
     fun register(account: String, password: String) {
         viewModelScope.launch {
@@ -29,7 +33,7 @@ class LoginViewModel: BaseViewModel() {
             params["repassword"] = password
             params["username"] = account
             Api.postForm<RegisterEntity>("user/register", params) {
-                registerLiveData.postValue(it)
+                _registerLiveData.postValue(it)
             }
         }
     }
@@ -41,7 +45,7 @@ class LoginViewModel: BaseViewModel() {
             params["username"] = account
             Api.postForm<RegisterEntity>("user/login", params) {
                 UserUtil.setLoginStatus(true)
-                loginLiveData.postValue(it)
+                _loginLiveData.postValue(it)
                 LiveEventBus.get(LoginEvent::class.java).post(LoginEvent(LoginEnum.LOGIN))
             }
         }

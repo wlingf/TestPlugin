@@ -15,13 +15,18 @@ import kotlinx.coroutines.launch
  */
 class KnowledgeDetailFragmentViewModel: BaseViewModel() {
 
-    val articleListEntityLiveData = MutableLiveData<MutableList<ArticleEntity>>()
-    val collectionLiveData = MutableLiveData<MutableMap<String, Any>>()
+    private val _articleListEntityLiveData = MutableLiveData<MutableList<ArticleEntity>>()
+    val articleListEntityLiveData: MutableLiveData<MutableList<ArticleEntity>>
+        get() = _articleListEntityLiveData
+
+    private val _collectionLiveData = MutableLiveData<MutableMap<String, Any>>()
+    val collectionLiveData: MutableLiveData<MutableMap<String, Any>>
+        get() = _collectionLiveData
 
     fun getList(page: Int, cid: Int) {
         viewModelScope.launch {
             Api.get<BaseListResponse<ArticleEntity>>("article/list/$page/json?cid=$cid") {
-                articleListEntityLiveData.postValue(it.datas)
+                _articleListEntityLiveData.postValue(it.datas)
             }
         }
     }
@@ -30,7 +35,7 @@ class KnowledgeDetailFragmentViewModel: BaseViewModel() {
         viewModelScope.launch {
             Api.postForm<String>("lg/collect/$id/json"){
                 val map = mapOf<String, Any>("id" to id, "collect" to true)
-                collectionLiveData.postValue(map as MutableMap<String, Any>)
+                _collectionLiveData.postValue(map as MutableMap<String, Any>)
             }
         }
     }
@@ -39,7 +44,7 @@ class KnowledgeDetailFragmentViewModel: BaseViewModel() {
         viewModelScope.launch {
             Api.postForm<String>("lg/uncollect_originId/$id/json"){
                 val map = mapOf<String, Any>("id" to id, "collect" to false)
-                collectionLiveData.postValue(map as MutableMap<String, Any>)
+                _collectionLiveData.postValue(map as MutableMap<String, Any>)
             }
         }
     }
