@@ -19,3 +19,12 @@ fun View.setThrottleListener(block: () -> Unit, duration: Long = 1000){
         block.invoke()
     }
 }
+
+/**
+ * View 防抖点击
+ * @param clickListener 事件回调
+ * @param duration 防抖时间
+ */
+fun View.setThrottleListener(clickListener: View.OnClickListener, duration: Long = 1000) {
+    ClickUtils.applySingleDebouncing(this, duration, clickListener)
+}
