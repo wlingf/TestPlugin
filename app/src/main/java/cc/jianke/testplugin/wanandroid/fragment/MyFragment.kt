@@ -13,6 +13,7 @@ import cc.jianke.testplugin.wanandroid.enum.LoginEnum
 import cc.jianke.testplugin.wanandroid.enum.MyAdapterEnum
 import cc.jianke.testplugin.wanandroid.event.LoginEvent
 import cc.jianke.testplugin.wanandroid.utils.UserUtil
+import cc.jianke.testplugin.wanandroid.utils.setThrottleListener
 import cc.jianke.testplugin.wanandroid.viewmodel.MyFragmentViewModel
 import com.blankj.utilcode.util.ActivityUtils
 import com.jeremyliao.liveeventbus.LiveEventBus
@@ -42,13 +43,13 @@ class MyFragment: BaseDataBindingMvvmFragment<FragmentMyBinding, MyFragmentViewM
         mViewBind.recycleView.adapter = mAdapter
         mAdapter.setNewInstance(list)
 
-        mViewBind.btnLoginOut.setOnClickListener {
+        mViewBind.btnLoginOut.setThrottleListener({
             XPopup.Builder(mContext)
                 .asConfirm("温馨提示", "确定是否要退出登录") {
                     LiveEventBus.get(LoginEvent::class.java).post(LoginEvent(LoginEnum.LOGIN_OUT))
                 }
                 .show()
-        }
+        })
     }
 
     override fun initEvent() {

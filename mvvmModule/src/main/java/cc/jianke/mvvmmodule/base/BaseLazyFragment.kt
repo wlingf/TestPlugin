@@ -9,6 +9,9 @@ import android.util.Log
  */
 abstract class BaseLazyFragment: BaseFragment() {
 
+    /**
+     * 记录是否懒加载过
+     */
     private var isLazyLoad = false
 
     override fun onResume() {

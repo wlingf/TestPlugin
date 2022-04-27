@@ -1,7 +1,5 @@
 package cc.jianke.mvvmmodule.utils;
 
-import android.content.Context;
-
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 
