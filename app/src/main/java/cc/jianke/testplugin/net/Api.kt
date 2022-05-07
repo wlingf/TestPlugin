@@ -1,6 +1,7 @@
 package cc.jianke.testplugin.net
 
 import cc.jianke.testplugin.wanandroid.utils.toast
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import rxhttp.toFlow
@@ -148,5 +149,13 @@ object Api {
             .collect {
                 success.invoke(it)
             }
+    }
+
+    /**
+     * get
+     * @param url 地址
+     */
+    inline fun <reified T> get(url: String): Flow<T> {
+        return RxHttp.get(url).toFlowResponse<T>()
     }
 }

@@ -105,8 +105,9 @@ class HomeFragment: BaseDataBindingMvvmFragment<FragmentHomeBinding, HomeFragmen
     }
 
     override fun initData() {
-        mViewModel.getBanner()
-        mViewModel.getList(page)
+//        mViewModel.getBanner()
+//        mViewModel.getList(page)
+        mViewModel.combineRequest(page)
     }
 
     override fun onRefresh(refreshLayout: RefreshLayout) {

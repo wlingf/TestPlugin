@@ -1,5 +1,6 @@
 package cc.jianke.testplugin.wanandroid.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import cc.jianke.mvvmmodule.mvvm.BaseViewModel
@@ -12,7 +13,10 @@ import cc.jianke.testplugin.wanandroid.entity.BannerEntity
 import cc.jianke.testplugin.wanandroid.utils.SmartRefreshUtil
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.onErrorResumeNext
 import kotlinx.coroutines.launch
+import rxhttp.wrapper.exception.HttpStatusCodeException
 import rxhttp.wrapper.param.RxHttp
 import rxhttp.wrapper.param.toFlowResponse
 
@@ -69,9 +73,22 @@ class HomeFragmentVideModel: BaseViewModel() {
         }
     }
 
-    fun combine(page: Int = 0){
+    fun combineRequest(page: Int = 0){
         viewModelScope.launch {
-
+            val flowBanner = Api.get<MutableList<BannerEntity>>("banner/json")
+                .catch {
+                    emit(mutableListOf())
+                }
+            val flowArticleList = Api.get<BaseListResponse<ArticleEntity>>("article/list/$page/json")
+                .catch {
+                    val entity = BaseListResponse<ArticleEntity>()
+                    entity.datas = mutableListOf()
+                    emit(entity)
+                }
+            combine(flowBanner, flowArticleList){banner, article ->
+                _bannerEntityLiveData.postValue(banner)
+                _articleListEntityLiveData.postValue(article.datas)
+            }.collect {  }
         }
     }
 }
