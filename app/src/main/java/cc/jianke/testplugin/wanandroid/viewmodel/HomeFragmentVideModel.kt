@@ -11,10 +11,7 @@ import cc.jianke.testplugin.wanandroid.entity.ArticleEntity
 import cc.jianke.testplugin.wanandroid.entity.ArticleListEntity
 import cc.jianke.testplugin.wanandroid.entity.BannerEntity
 import cc.jianke.testplugin.wanandroid.utils.SmartRefreshUtil
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.onErrorResumeNext
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import rxhttp.wrapper.exception.HttpStatusCodeException
 import rxhttp.wrapper.param.RxHttp
@@ -85,10 +82,20 @@ class HomeFragmentVideModel: BaseViewModel() {
                     entity.datas = mutableListOf()
                     emit(entity)
                 }
-            combine(flowBanner, flowArticleList){banner, article ->
-                _bannerEntityLiveData.postValue(banner)
-                _articleListEntityLiveData.postValue(article.datas)
-            }.collect {  }
+//            combine(flowBanner, flowArticleList){banner, article ->
+//                _bannerEntityLiveData.postValue(banner)
+//                _articleListEntityLiveData.postValue(article.datas)
+//            }.collect {  }
+            listOf(flowBanner, flowArticleList).merge().collect {
+                when(it) {
+                    is MutableList<*> -> {
+                        _bannerEntityLiveData.postValue(it as MutableList<BannerEntity>)
+                    }
+                    is BaseListResponse<*> -> {
+                        _articleListEntityLiveData.postValue(it.datas as MutableList<ArticleEntity>)
+                    }
+                }
+            }
         }
     }
 }
