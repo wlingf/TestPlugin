@@ -16,6 +16,12 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
 
     viewBinding{
@@ -38,6 +44,12 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+}
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
     }
 }
 
@@ -64,6 +76,7 @@ dependencies {
     implementation project(":mvvmModule")
     implementation project(":wanAndroid")
 
+    implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
     implementation 'com.github.liujingxing.rxhttp:rxhttp:2.8.5'
     // ksp/kapt/annotationProcessor 选其一
@@ -81,4 +94,8 @@ dependencies {
     implementation 'io.github.scwang90:refresh-header-classics:2.0.5'
     implementation 'io.github.scwang90:refresh-footer-classics:2.0.5'
     implementation 'com.github.li-xiaojun:XPopup:2.7.6'
+
+    implementation 'com.alibaba:arouter-api:1.5.2'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.5.2'
+    kapt 'com.alibaba:arouter-compiler:1.5.2'
 }

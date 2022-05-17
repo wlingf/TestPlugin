@@ -1,5 +1,7 @@
 package cc.jianke.testplugin.net
 
+import cc.jianke.testplugin.wanandroid.utils.ARouterPath
+import com.alibaba.android.arouter.launcher.ARouter
 import okhttp3.Response
 import rxhttp.wrapper.annotation.Parser
 import rxhttp.wrapper.exception.ParseException
@@ -32,9 +34,14 @@ open class ResponseParser<T>: TypeParser<T> {
             @Suppress("UNCHECKED_CAST")
             t = data.errorMsg as T
         }
+        //未登录
+        if (data.errorCode == -1001) {
+            ARouter.getInstance().build(ARouterPath.LOGIN_ACTIVITY).navigation()
+            throw ParseException("${data.errorCode}", data.errorMsg, response)
+        }
         //code不等于200，说明数据不正确，抛出异常
         if (data.errorCode != 0 || t == null) {
-            throw ParseException(data.errorCode.toString(), data.errorMsg, response)
+            throw ParseException("${data.errorCode}", data.errorMsg, response)
         }
         return t
     }
