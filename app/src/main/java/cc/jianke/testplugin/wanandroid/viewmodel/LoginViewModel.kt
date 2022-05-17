@@ -45,8 +45,8 @@ class LoginViewModel: BaseViewModel() {
             params["username"] = account
             Api.postForm<RegisterEntity>("user/login", params) {
                 UserUtil.setLoginStatus(true)
-                _loginLiveData.postValue(it)
                 LiveEventBus.get(LoginEvent::class.java).post(LoginEvent(LoginEnum.LOGIN))
+                _loginLiveData.postValue(it)
             }
         }
     }

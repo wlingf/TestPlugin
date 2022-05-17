@@ -1,7 +1,11 @@
 package cc.jianke.testplugin.net
 
+import cc.jianke.testplugin.wanandroid.enum.LoginEnum
+import cc.jianke.testplugin.wanandroid.event.LoginEvent
 import cc.jianke.testplugin.wanandroid.utils.ARouterPath
+import cc.jianke.testplugin.wanandroid.utils.UserUtil
 import com.alibaba.android.arouter.launcher.ARouter
+import com.jeremyliao.liveeventbus.LiveEventBus
 import okhttp3.Response
 import rxhttp.wrapper.annotation.Parser
 import rxhttp.wrapper.exception.ParseException
@@ -36,6 +40,8 @@ open class ResponseParser<T>: TypeParser<T> {
         }
         //未登录
         if (data.errorCode == -1001) {
+            UserUtil.setLoginStatus(false)
+            LiveEventBus.get(LoginEvent::class.java).post(LoginEvent(LoginEnum.LOGIN_OUT))
             ARouter.getInstance().build(ARouterPath.LOGIN_ACTIVITY).navigation()
             throw ParseException("${data.errorCode}", data.errorMsg, response)
         }
