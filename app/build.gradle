@@ -98,4 +98,6 @@ dependencies {
     implementation 'com.alibaba:arouter-api:1.5.2'
     annotationProcessor 'com.alibaba:arouter-compiler:1.5.2'
     kapt 'com.alibaba:arouter-compiler:1.5.2'
+
+    implementation 'com.plattysoft.leonids:LeonidsLib:1.3.2'
 }

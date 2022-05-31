@@ -17,7 +17,7 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/App_style">
         <activity
-            android:name=".wanandroid.activity.IndexActivity"
+            android:name=".TestDataBindActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +28,6 @@
 
         <activity android:name="cc.jianke.pluginmodule.ProxyActivity"/>
         <activity android:name=".SecondViewBindingMvvmActivity"/>
-        <activity android:name=".TestDataBindActivity"/>
         <activity android:name=".wanandroid.activity.WebActivity"/>
         <activity android:name=".wanandroid.activity.LoginActivity"/>
         <activity android:name=".wanandroid.activity.CoinActivity"/>
